@@ -44,6 +44,12 @@ jobs:
         with:
           cache-prefix: ${{ runner.os }}-v${{ matrix.node-version }}
 
+      # Add this cleanup step
+      - name: Clean workspace before create-app
+        run: |
+          rm -rf example-app
+          ls -la
+
       - name: create-app
         run: npx @backstage/create-app
         env:
